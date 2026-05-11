@@ -1,0 +1,9 @@
+# Provider plugins and cache — fully reproducible via terraform init
+.terraform/
+
+# State files — may contain secrets, use remote backend for teams
+terraform.tfstate
+terraform.tfstate.backup
+
+# Local variable overrides — may contain secrets
+*.auto.tfvars
