@@ -7,3 +7,6 @@ terraform.tfstate.backup
 
 # Local variable overrides — may contain secrets
 *.auto.tfvars
+
+# Files generated after terraform apply, can be use for ansible inventory
+inventory.ini
