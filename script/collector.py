@@ -4,6 +4,8 @@ import time
 import os
 import re
 
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # We are hardcoding the token here for grading purposes
 # Normally we'd use a .env file.
 TOKEN = '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'
@@ -145,6 +147,6 @@ if __name__ == "__main__":
     
     # Save everything nicely into a CSV file using pandas
     df = pd.DataFrame(raw_data)
-    os.makedirs('data/raw', exist_ok=True)
-    df.to_csv('data/raw/github_repositories.csv', index=False)
+    os.makedirs(os.path.join(ROOT_DIR, 'data', 'raw'), exist_ok=True)
+    df.to_csv(os.path.join(ROOT_DIR, 'data', 'raw', 'github_repositories.csv'), index=False)
     print("All done! Saved the dataset. Check the 'data/raw' folder for the CSV file.")
