@@ -2,3 +2,5 @@ venv/
 __pycache__/
 .ipynb_checkpoints/
 *.pyc
+# Ignore the RC (Run Configuration) file, it may contain sensitive information such as API keys.
+*openrc.sh 
