@@ -3,5 +3,5 @@
 Run script
 ```sh
 export ANSIBLE_HOST_KEY_CHECKING=False
-ansible-playbook configuraion.yml -i inventory.ini --private-key={path_to_private_key}
+ansible-playbook configuraion.yml -i inventory.ini -l {group_or_host} --private-key={path_to_private_key}
 ```
