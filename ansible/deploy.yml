@@ -15,12 +15,9 @@
 
   vars:
     # Override via --extra-vars at runtime (never commit real values)
-    github_pat:       "{{ github_pat }}"
-    mlflow_uri:       "{{ mlflow_uri | default('http://dev2:5000') }}"
-    mlflow_model:     "{{ mlflow_model | default('star_predictor') }}"
-    mlflow_stage:     "{{ mlflow_stage | default('Production') }}"
+    github_pat:   "{{ github_pat }}"
 
-    repo_url:         "https://oskarpiibar:{{ github_pat }}@github.com/oskarpiibar/DE2-project"
+    repo_url:     "https://oskarpiibar:{{ github_pat }}@github.com/oskarpiibar/DE2-project"
     repo_branch:      "oskar"
     app_dir:          "/home/ubuntu/DE2-project"
     app_src:          "{{ app_dir }}/src/app"
@@ -81,19 +78,7 @@
         accept_hostkey: true
       become_user: ubuntu
 
-    # ── 3. Write .env file (keeps secrets off the command line) ───────
-    - name: Write .env file for docker compose
-      copy:
-        dest:    "{{ app_src }}/.env"
-        mode:    "0600"
-        owner:   ubuntu
-        group:   ubuntu
-        content: |
-          MLFLOW_TRACKING_URI={{ mlflow_uri }}
-          MLFLOW_MODEL_NAME={{ mlflow_model }}
-          MLFLOW_MODEL_STAGE={{ mlflow_stage }}
-
-    # ── 4. Build & (re)start the container ────────────────────────────
+    # ── 3. Build & (re)start the container ────────────────────────────
     - name: Build Docker image
       community.docker.docker_compose_v2:
         project_src: "{{ app_src }}"
