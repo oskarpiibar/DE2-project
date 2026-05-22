@@ -1,0 +1,4 @@
+# Keep the folder in git but ignore model files (deployed by git hook)
+*.pkl
+*.joblib
+*.pickle
