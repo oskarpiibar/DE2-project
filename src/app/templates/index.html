@@ -4,17 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GitHub Star Predictor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/static/css/style.css" />
 </head>
 <body>
 
   <header>
-    <div class="header-inner">
-      <div class="logo">★ StarPredictor</div>
-      <div class="tagline">Rank GitHub repos by predicted stargazers</div>
-    </div>
+    <h1>GitHub Star Predictor</h1>
   </header>
 
   <main>
@@ -23,18 +19,16 @@
     <section class="section">
       <div class="section-header">
         <h2>Repositories</h2>
-        <button id="addRepoBtn" class="btn btn-ghost">+ Add Repo</button>
+        <button id="addRepoBtn">Add Repo</button>
       </div>
       <div id="repoList" class="repo-list"></div>
     </section>
 
     <!-- ── ACTIONS ── -->
     <div class="actions">
-      <button id="predictBtn" class="btn btn-primary">
-        <span class="btn-icon">⚡</span> Predict &amp; Rank
-      </button>
-      <button id="demoBtn" class="btn btn-secondary">Load Demo Data</button>
-      <button id="clearBtn" class="btn btn-ghost">Clear All</button>
+      <button id="predictBtn" class="primary">Predict and Rank</button>
+      <button id="demoBtn">Load Demo Data</button>
+      <button id="clearBtn">Clear All</button>
     </div>
 
     <!-- ── RESULTS ── -->
@@ -56,7 +50,7 @@
     <div class="repo-card" data-index="">
       <div class="card-header">
         <input class="repo-name-input" type="text" placeholder="owner/repo-name" />
-        <button class="remove-btn" title="Remove">✕</button>
+        <button class="remove-btn danger">Remove</button>
       </div>
       <div class="card-grid">
 
