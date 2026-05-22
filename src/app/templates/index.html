@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Star Predictor</title>
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>GitHub Star Predictor</h1>
+  </header>
+
+  <main>
+
+    <!-- ── REPO CARDS SECTION ── -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Repositories</h2>
+        <button id="addRepoBtn">Add Repo</button>
+      </div>
+      <div id="repoList" class="repo-list"></div>
+    </section>
+
+    <!-- ── ACTIONS ── -->
+    <div class="actions">
+      <button id="predictBtn" class="primary">Predict and Rank</button>
+      <button id="demoBtn">Load Demo Data</button>
+      <button id="clearBtn">Clear All</button>
+    </div>
+
+    <!-- ── RESULTS ── -->
+    <section id="resultsSection" class="section hidden">
+      <div class="section-header">
+        <h2>Rankings</h2>
+        <span id="modelBadge" class="badge"></span>
+      </div>
+      <div id="resultsContainer"></div>
+    </section>
+
+    <!-- ── ERROR ── -->
+    <div id="errorBox" class="error-box hidden"></div>
+
+  </main>
+
+  <!-- ── REPO CARD TEMPLATE ── -->
+  <template id="repoCardTemplate">
+    <div class="repo-card" data-index="">
+      <div class="card-header">
+        <input class="repo-name-input" type="text" placeholder="owner/repo-name" />
+        <button class="remove-btn danger">Remove</button>
+      </div>
+      <div class="card-grid">
+
+        <label>Forks
+          <input type="number" name="forks" min="0" placeholder="e.g. 12000" />
+        </label>
+        <label>Open Issues
+          <input type="number" name="open_issues" min="0" placeholder="e.g. 340" />
+        </label>
+        <label>Repo Size (KB)
+          <input type="number" name="size" min="0" placeholder="e.g. 5000" />
+        </label>
+        <label>Commits
+          <input type="number" name="commits" min="0" placeholder="e.g. 8000" />
+        </label>
+        <label>Contributors
+          <input type="number" name="contributors" min="1" placeholder="e.g. 500" />
+        </label>
+        <label>Releases
+          <input type="number" name="releases" min="0" placeholder="e.g. 40" />
+        </label>
+        <label>Open PRs
+          <input type="number" name="open_pull_requests" min="0" placeholder="e.g. 80" />
+        </label>
+        <label>Subscribers
+          <input type="number" name="subscribers_count" min="0" placeholder="e.g. 3000" />
+        </label>
+        <label>Network Count
+          <input type="number" name="network_count" min="0" placeholder="e.g. 12000" />
+        </label>
+        <label>Repo Age (days)
+          <input type="number" name="repo_age_days" min="1" placeholder="e.g. 2000" />
+        </label>
+        <label>Topics Count
+          <input type="number" name="topics_count" min="0" placeholder="e.g. 5" />
+        </label>
+        <label>Primary Language
+          <select name="language">
+            <option value="Python">Python</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Go">Go</option>
+            <option value="Rust">Rust</option>
+            <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="Shell">Shell</option>
+            <option value="Jupyter Notebook">Jupyter Notebook</option>
+            <option value="C">C</option>
+            <option value="HTML">HTML</option>
+            <option value="Ruby">Ruby</option>
+            <option value="C#">C#</option>
+            <option value="Swift">Swift</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="CSS">CSS</option>
+            <option value="Other" selected>Other</option>
+          </select>
+        </label>
+
+        <!-- Toggles row -->
+        <div class="toggles-row">
+          <label class="toggle-label">
+            <input type="checkbox" name="has_description" checked />
+            <span>Has Description</span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" name="has_homepage" />
+            <span>Has Homepage</span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" name="has_license" checked />
+            <span>Has License</span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" name="has_wiki" />
+            <span>Has Wiki</span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" name="has_pages" />
+            <span>Has Pages</span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" name="archived" />
+            <span>Archived</span>
+          </label>
+        </div>
+
+      </div><!-- .card-grid -->
+    </div><!-- .repo-card -->
+  </template>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

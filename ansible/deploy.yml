@@ -1,0 +1,111 @@
+---
+# ═══════════════════════════════════════════════════════════════
+#  Star Predictor — Production Deployment Playbook
+#  Run from the jump server:
+#
+#    ansible-playbook ansible/deploy.yml \
+#      -i ansible/inventory.ini \
+#      --extra-vars "github_pat=ghp_xxxx mlflow_uri=http://dev2:5000"
+#
+# ═══════════════════════════════════════════════════════════════
+
+- name: Deploy Star Predictor to production servers
+  hosts: prod
+  become: true
+
+  vars:
+    # Override via --extra-vars at runtime (never commit real values)
+    github_pat:   "{{ github_pat }}"
+
+    repo_url:     "https://oskarpiibar:{{ github_pat }}@github.com/oskarpiibar/DE2-project"
+    repo_branch:      "oskar"
+    app_dir:          "/home/ubuntu/DE2-project"
+    app_src:          "{{ app_dir }}/src/app"
+
+  tasks:
+
+    # ── 1. Ensure Docker + Compose plugin are present ─────────────────
+    - name: Install required apt packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - git
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker apt repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+        state: present
+
+    - name: Install Docker CE and Compose plugin
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
+
+    - name: Ensure Docker service is running
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Add ubuntu user to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: true
+
+    # ── 2. Pull / update the repo ──────────────────────────────────────
+    - name: Clone or update repository
+      git:
+        repo:        "{{ repo_url }}"
+        dest:        "{{ app_dir }}"
+        version:     "{{ repo_branch }}"
+        force:       true        # discard any local changes on the server
+        accept_hostkey: true
+      become_user: ubuntu
+
+    # ── 3. Build & (re)start the container ────────────────────────────
+    - name: Build Docker image
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_src }}"
+        build:       always          # rebuild on every deploy to pick up code changes
+        state:       present
+      become_user: ubuntu
+      environment:
+        DOCKER_BUILDKIT: "1"
+
+    - name: Restart app container (zero-downtime rolling)
+      community.docker.docker_compose_v2:
+        project_src:    "{{ app_src }}"
+        state:          restarted
+        remove_orphans: true
+      become_user: ubuntu
+
+    # ── 5. Health check ───────────────────────────────────────────────
+    - name: Wait for app to be healthy
+      uri:
+        url:            "http://localhost:8000/health"
+        return_content: true
+        status_code:    200
+      register:   health_result
+      retries:    10
+      delay:      6
+      until:      health_result.status == 200
+
+    - name: Print health status
+      debug:
+        msg: "{{ inventory_hostname }} — {{ health_result.content }}"

@@ -1,0 +1,150 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  padding: 20px;
+}
+
+header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 20px;
+  margin-bottom: 24px;
+}
+
+header h1 { font-size: 1.2rem; }
+
+h2 { font-size: 1rem; margin-bottom: 12px; }
+
+.section { margin-bottom: 24px; }
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Repo cards */
+.repo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.repo-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.card-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.repo-name-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Card grid of inputs */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.card-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.card-grid input[type="number"],
+.card-grid select {
+  padding: 5px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.toggles-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.toggle-label {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #444;
+  cursor: pointer;
+}
+
+/* Buttons */
+button {
+  padding: 8px 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+button.primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+button.danger {
+  color: #c00;
+  border-color: #c00;
+}
+
+.actions { display: flex; gap: 10px; margin-bottom: 24px; }
+
+/* Results */
+.result-row {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.result-rank { font-size: 1.2rem; font-weight: bold; min-width: 32px; }
+.result-name { font-weight: bold; margin-bottom: 2px; }
+.result-log  { font-size: 0.75rem; color: #666; }
+.result-stars { margin-left: auto; font-size: 1.1rem; font-weight: bold; }
+
+.error-box {
+  background: #fee;
+  border: 1px solid #faa;
+  border-radius: 4px;
+  padding: 10px 14px;
+  color: #900;
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+
+.hidden { display: none !important; }
