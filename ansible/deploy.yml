@@ -98,7 +98,7 @@
     # ── 5. Health check ───────────────────────────────────────────────
     - name: Wait for app to be healthy
       uri:
-        url:            "http://localhost:8888/health"
+        url:            "http://localhost:8000/health"
         return_content: true
         status_code:    200
       register:   health_result
@@ -138,7 +138,8 @@
             if [[ $ref =~ .*/main$ ]];
             then
               echo "Main ref received. Deploying main branch to production..."
-              sudo git --work-tree=/home/ubuntu/DE2-project/src/models --git-dir=/home/ubuntu/model-receiver checkout -f
+              sudo git --work-tree=/home/ubuntu/DE2-project/src/app/models --git-dir=/home/ubuntu/model-receiver checkout -f
+              docker restart star_predictor_app
             else
               echo "Ref $ref successfully received. Doing nothing: only the main branch may be deployed on this server."
             fi
