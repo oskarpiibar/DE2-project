@@ -10,7 +10,7 @@ services:
       - "8888:8000"
     volumes:
       # models/ is populated by the git hook on the dev server
-      - ./models:/app/models:ro
+      - ../models:/app/models:ro
     environment:
       - MODELS_DIR=/app/models
     healthcheck:
