@@ -5,7 +5,7 @@
 #
 #    ansible-playbook ansible/deploy.yml \
 #      -i ansible/inventory.ini \
-#      --extra-vars "github_pat=ghp_xxxx mlflow_uri=http://dev2:5000"
+#      --extra-vars "github_pat=ghp_xxxx mlflow_uri=http://dev2:5000" --private-key {path_to_key}
 #
 # ═══════════════════════════════════════════════════════════════
 
@@ -18,7 +18,7 @@
     github_pat:   "{{ github_pat }}"
 
     repo_url:     "https://oskarpiibar:{{ github_pat }}@github.com/oskarpiibar/DE2-project"
-    repo_branch:      "oskar"
+    repo_branch:      "main"
     app_dir:          "/home/ubuntu/DE2-project"
     app_src:          "{{ app_dir }}/src/app"
 
@@ -98,7 +98,7 @@
     # ── 5. Health check ───────────────────────────────────────────────
     - name: Wait for app to be healthy
       uri:
-        url:            "http://localhost:8000/health"
+        url:            "http://localhost:8888/health"
         return_content: true
         status_code:    200
       register:   health_result
@@ -109,3 +109,37 @@
     - name: Print health status
       debug:
         msg: "{{ inventory_hostname }} — {{ health_result.content }}"
+
+    # ── 6. Create model-receiver (githooks) ───────────────
+    - name: Ensure model-receiver directory exists
+      file:
+        path: /home/ubuntu/model-receiver
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Initialize bare git repository
+      command: git init --bare --initial-branch=main /home/ubuntu/model-receiver
+      args:
+        creates: /home/ubuntu/model-receiver/HEAD
+      become_user: ubuntu
+
+    - name: Create post-receive hook
+      copy:
+        dest: /home/ubuntu/model-receiver/hooks/post-receive
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+        content: |
+          #!/bin/bash
+          while read oldrev newrev ref
+          do
+            if [[ $ref =~ .*/main$ ]];
+            then
+              echo "Main ref received. Deploying main branch to production..."
+              sudo git --work-tree=/home/ubuntu/DE2-project/src/models --git-dir=/home/ubuntu/model-receiver checkout -f
+            else
+              echo "Ref $ref successfully received. Doing nothing: only the main branch may be deployed on this server."
+            fi
+          done
