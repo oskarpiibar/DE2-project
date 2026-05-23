@@ -98,7 +98,7 @@
     # ── 5. Health check ───────────────────────────────────────────────
     - name: Wait for app to be healthy
       uri:
-        url:            "http://localhost:8888/health"
+        url:            "http://localhost:8000/health"
         return_content: true
         status_code:    200
       register:   health_result
@@ -138,8 +138,61 @@
             if [[ $ref =~ .*/main$ ]];
             then
               echo "Main ref received. Deploying main branch to production..."
-              sudo git --work-tree=/home/ubuntu/DE2-project/src/models --git-dir=/home/ubuntu/model-receiver checkout -f
+              sudo git --work-tree=/home/ubuntu/DE2-project/src/app/models --git-dir=/home/ubuntu/model-receiver checkout -f
+              docker restart star_predictor_app
             else
               echo "Ref $ref successfully received. Doing nothing: only the main branch may be deployed on this server."
             fi
           done
+
+
+- name: Deploy nginx load balancer
+  hosts: prod1
+  become: true
+
+  vars:
+    backend_servers: "{{ groups['prod'] }}"
+
+  tasks:
+
+    - name: Ensure nginx config directory exists
+      file: 
+        path: /opt/nginx
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Create nginx config
+      copy:
+        dest: /opt/nginx/nginx.conf
+        content: |
+          events {}
+
+          http {
+              upstream backend {
+              {% for host in backend_servers %}
+                  server {{ hostvars[host]['ansible_host'] }}:8000;
+              {% endfor %}
+              }
+
+              server {
+                  listen 80;
+
+                  location / {
+                      proxy_pass http://backend;
+                      proxy_set_header Host $host;
+                      proxy_set_header X-Real-IP $remote_addr;
+                      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  }
+              }
+          }
+
+    - name: Run nginx container
+      shell: |
+        docker rm -f nginx-lb || true
+        docker run -d \
+          --name nginx-lb \
+          -p 8888:80 \
+          -v /opt/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+          nginx
