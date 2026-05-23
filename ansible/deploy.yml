@@ -98,7 +98,7 @@
     # ── 5. Health check ───────────────────────────────────────────────
     - name: Wait for app to be healthy
       uri:
-        url:            "http://localhost:8000/health"
+        url:            "http://localhost:8888/health"
         return_content: true
         status_code:    200
       register:   health_result
