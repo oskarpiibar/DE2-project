@@ -5,6 +5,7 @@ The model file is placed there by a git hook on the dev server.
 """
 
 import os
+import socket
 import glob
 import joblib
 import numpy as np
@@ -154,6 +155,7 @@ async def health():
         "status":       "ok",
         "model_loaded": "model" in model_store,
         "model_file":   model_store.get("model_file", "not loaded"),
+        "server":       socket.gethostname(),
     }
 
 
