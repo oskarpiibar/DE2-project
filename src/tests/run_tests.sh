@@ -14,11 +14,15 @@
 # ═══════════════════════════════════════════════════════════════
 
 PROD1_IP=${1:?  "Usage: $0 <prod1-ip> <nginx-ip> <prod2-ip>"}
+PROD1_PORT=8000
+NGINX_PORT=8888
 NGINX_IP=${2:?  "Usage: $0 <prod1-ip> <nginx-ip> <prod2-ip>"}
 PROD2_IP=${3:?  "Usage: $0 <prod1-ip> <nginx-ip> <prod2-ip>"}
 
 RESULTS_DIR="results/$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$RESULTS_DIR"
+
+export PATH=$PATH:$HOME/.local/bin
 
 USERS=50          # concurrent users
 SPAWN_RATE=5      # users added per second
@@ -57,7 +61,7 @@ check_lb_distribution() {
     echo "--- Load balancer distribution ($requests requests to /health) ---"
     declare -A counts
     for i in $(seq 1 $requests); do
-        server=$(curl -s http://$nginx_ip/health | python3 -c "import sys,json; print(json.load(sys.stdin).get('server','unknown'))" 2>/dev/null)
+        server=$(curl -s http://$nginx_ip:$NGINX_PORT/health | python3 -c "import sys,json; print(json.load(sys.stdin).get('server','unknown'))" 2>/dev/null)
         counts[$server]=$((${counts[$server]:-0} + 1))
     done
     for server in "${!counts[@]}"; do
@@ -80,7 +84,7 @@ STATS_PID=$(collect_stats "single_vm" $PROD1_IP ${DURATION%s})
 
 # Run Locust
 locust -f locustfile.py \
-    --host "http://$PROD1_IP:8000" \
+    --host "http://$PROD1_IP:$PROD1_PORT" \
     --users $USERS \
     --spawn-rate $SPAWN_RATE \
     --run-time $DURATION \
@@ -107,7 +111,7 @@ STATS_PID1=$(collect_stats "two_vm_prod1" $PROD1_IP ${DURATION%s})
 STATS_PID2=$(collect_stats "two_vm_prod2" $PROD2_IP ${DURATION%s})
 
 locust -f locustfile.py \
-    --host "http://$NGINX_IP" \
+    --host "http://$NGINX_IP:$NGINX_PORT" \
     --users $USERS \
     --spawn-rate $SPAWN_RATE \
     --run-time $DURATION \
