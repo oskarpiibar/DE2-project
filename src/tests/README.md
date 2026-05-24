@@ -15,7 +15,7 @@ chmod +x run_tests.sh
 ## Run
 
 ```bash
-./run_tests.sh <prod1-ip>:8000 <prod1-ip>:8888 <prod2-ip>:8000
+./run_tests.sh <prod1-ip> <prod1-ip> <prod2-ip>
 ```
 
 ## What gets measured
