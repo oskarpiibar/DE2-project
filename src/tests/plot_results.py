@@ -99,6 +99,12 @@ def main(results_dir):
         t_s, p50_s, p95_s = read_history_csv(single_hist)
         t_t, p50_t, p95_t = read_history_csv(two_hist)
 
+        # Trim to same length to avoid shape mismatch
+        n_s = min(len(t_s), len(p50_s), len(p95_s))
+        n_t = min(len(t_t), len(p50_t), len(p95_t))
+        t_s, p50_s, p95_s = t_s[:n_s], p50_s[:n_s], p95_s[:n_s]
+        t_t, p50_t, p95_t = t_t[:n_t], p50_t[:n_t], p95_t[:n_t]
+
         # p50 plot
         if t_s:
             ax_p50.plot(t_s, p50_s, color=COLORS["single"][idx], label="1 VM", linewidth=2)
