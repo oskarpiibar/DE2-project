@@ -21,7 +21,7 @@ import matplotlib.gridspec as gridspec
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-USER_COUNTS = [50, 100, 200]
+USER_COUNTS = [50, 100, 200, 400]
 COLORS = {
     "single": ["#2563eb", "#1d4ed8", "#1e3a8a"],   # blue shades
     "two":    ["#16a34a", "#15803d", "#14532d"],    # green shades
@@ -83,9 +83,9 @@ def main(results_dir):
         print(f"Directory not found: {results_dir}")
         sys.exit(1)
 
-    fig1, axes1 = plt.subplots(1, 3, figsize=(15, 4), sharey=False)
-    fig2, axes2 = plt.subplots(1, 3, figsize=(15, 4), sharey=False)
-    fig3, axes3 = plt.subplots(1, 3, figsize=(15, 4), sharey=False)
+    fig1, axes1 = plt.subplots(1, 4, figsize=(20, 4), sharey=False)
+    fig2, axes2 = plt.subplots(1, 4, figsize=(20, 4), sharey=False)
+    fig3, axes3 = plt.subplots(1, 4, figsize=(20, 4), sharey=False)
 
     for idx, users in enumerate(USER_COUNTS):
         ax_p50 = axes1[idx]
