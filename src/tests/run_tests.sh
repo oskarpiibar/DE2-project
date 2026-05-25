@@ -1,12 +1,4 @@
 #!/bin/bash
-# ═══════════════════════════════════════════════════════════════
-#  Scalability test runner — single VM vs two VMs (via NGINX)
-#  Runs tests at 50, 100, and 200 concurrent users
-#
-#  Usage:
-#    chmod +x run_tests.sh
-#    ./run_tests.sh <prod1-ip> <nginx-ip> <prod2-ip>
-# ═══════════════════════════════════════════════════════════════
 
 PROD1_IP=${1:?  "Usage: $0 <prod1-ip> <nginx-ip> <prod2-ip>"}
 NGINX_IP=${2:?  "Usage: $0 <prod1-ip> <nginx-ip> <prod2-ip>"}
@@ -25,7 +17,7 @@ export PATH=$PATH:$HOME/.local/bin
 
 SPAWN_RATE=10
 DURATION=60s
-USER_COUNTS=(50 100 200)
+USER_COUNTS=(50 100 200 400)
 
 echo "================================================"
 echo "  Star Predictor Scalability Tests"
