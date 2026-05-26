@@ -5,7 +5,7 @@
 #
 #    ansible-playbook ansible/deploy.yml \
 #      -i ansible/inventory.ini \
-#      --extra-vars "github_pat=ghp_xxxx mlflow_uri=http://dev2:5000" --private-key {path_to_key}
+#      --extra-vars "github_pat=ghp_xxxx" --private-key {path_to_key}
 #
 # ═══════════════════════════════════════════════════════════════
 
@@ -21,6 +21,7 @@
     repo_branch:      "main"
     app_dir:          "/home/ubuntu/DE2-project"
     app_src:          "{{ app_dir }}/src/app"
+    app_name:         "star_predictor_app"
 
   tasks:
 
@@ -139,7 +140,7 @@
             then
               echo "Main ref received. Deploying main branch to production..."
               sudo git --work-tree=/home/ubuntu/DE2-project/src/app/models --git-dir=/home/ubuntu/model-receiver checkout -f
-              docker restart star_predictor_app
+              docker restart {{ app_name }}
             else
               echo "Ref $ref successfully received. Doing nothing: only the main branch may be deployed on this server."
             fi
