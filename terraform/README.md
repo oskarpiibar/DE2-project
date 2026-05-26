@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-1. Terraform installed (run [this script](../script/install_terraform.sh))
-2. Openstack client installed (run [this script](../script/install_openstack_client.sh))
+1. Terraform installed (run [this script](../script/install/install_terraform.sh))
+2. Openstack client installed (run [this script](../script/install/install_openstack_client.sh))
 3. The RC file, download from OpenStack dashboard → API Access. Then source it by run command `source <name_of_rc_file>`
 
 
