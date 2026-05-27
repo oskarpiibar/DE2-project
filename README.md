@@ -23,7 +23,7 @@
 
 ## Overview
 
-This project goes beyond building a machine learning model to predict the star count of GitHub repositories — it demonstrates an MLOps ecosystem designed for scalability, automation, and operational reliability.
+This project goes beyond building a machine learning model to predict the star count of GitHub repositories, it demonstrates an MLOps ecosystem designed for scalability, automation, and operational reliability.
 
 The system is built around an end-to-end architecture spanning both development and production environments. In the development environment, the pipeline supports data collection, preprocessing, experimentation, and distributed model training. Once trained, models are automatically deployed into production through a CI/CD workflow powered by Git hooks, reducing manual intervention and enabling faster iteration cycles.
 
