@@ -27,7 +27,7 @@ This project goes beyond building a machine learning model to predict the star c
 
 The system is built around an end-to-end architecture spanning both development and production environments. In the development environment, the pipeline supports data collection, preprocessing, experimentation, and distributed model training. Once trained, models are automatically deployed into production through a CI/CD workflow powered by Git hooks, reducing manual intervention and enabling faster iteration cycles.
 
-On the production side, the system serves predictions through scalable back-end and front-end services deployed behind a load balancer, allowing requests to be efficiently distributed across instances. Distributed training with Ray and prediction services built with FastAPI are architected for horizontal expansion and performance testing under increasing workloads.
+On the production side, the system serves predictions through scalable back-end and front-end services deployed behind a load balancer, allowing requests to be efficiently distributed across instances. Scalability is a core design principle: distributed training with Ray and prediction services built with FastAPI are architected for horizontal expansion and performance testing under increasing workloads.
 
 ![System Architecture](figures/system_architecture.png)
 
