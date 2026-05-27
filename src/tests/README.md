@@ -7,6 +7,8 @@ Tests the Star Predictor under load for two scenarios:
 ## Setup (jump server)
 
 ```bash
+python3 -m venv ~/locust-env
+source ~/locust-env/bin/activate
 pip install locust
 cd src/tests
 chmod +x run_tests.sh
@@ -68,6 +70,6 @@ scp -i ~/.ssh/<your-key> ubuntu@<jump-ip>:~/DE2-project/src/tests/results/<times
 
 ## Notes
 
-- Locust must be run inside a virtual environment to avoid system package conflicts: `python3 -m venv ~/locust-env && source ~/locust-env/bin/activate && pip install locust`
+- Locust must be run inside a virtual environment to avoid system package conflicts
 - The SSH key for docker stats collection is hardcoded to `~/.ssh/group1-key.pem` in `run_tests.sh` — update if your key has a different name
 - The `/health` endpoint returns the container hostname, used to verify NGINX is distributing requests across both servers
