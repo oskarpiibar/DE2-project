@@ -141,5 +141,7 @@ The p50 response time was roughly equal for 1 and 2 VMs across all user counts (
 
 
 ## Acknowledgments
+We would like to thank our supervisor Salman Toor for his guidance throughout the Data Engineering I and II courses and for providing the foundation and support that made this project possible.
 
 ### Contributors:
+Celia Medina Gimenez, Dino Keylas, Harsh Pallavi Chitnis, Eric Björling, Oskar Johannes Piibar
