@@ -101,7 +101,7 @@ The preprocessing pipeline applied a `log1p` transformation to the star count ta
 - `has_description`, `has_homepage`, `has_license` — binary flags from text fields
 - Language one-hot encoding — 17 binary columns from 42 unique language values
 
-Missing values were filled with column medians. The final dataset has 1,000 rows and 36 columns.
+Missing values were filled with column medians. The final dataset has 1,000 rows and 35 columns.
 
 ### Results
 
