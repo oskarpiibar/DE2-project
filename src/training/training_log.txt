@@ -1,0 +1,302 @@
+[20:19:52] 
+[20:19:52] ============================================================
+[20:19:52]   TRAINING RUN STARTED
+[20:19:52] ============================================================
+[20:19:52] Timestamp : 2026-05-22 20:19:52
+[20:19:52] Data      : /home/ubuntu/DE2-project/data/processed/features.csv
+[20:19:52] Target    : log_stars
+[20:19:52] Samples   : 30 trials per tuned model
+[20:19:52] Output    : /home/ubuntu/DE2-project/models
+[20:19:52] 
+[20:19:52] ============================================================
+[20:19:52]   RAY INIT
+[20:19:52] ============================================================
+[20:19:57] Connected to Ray cluster
+[20:19:57] 
+[20:19:57] ============================================================
+[20:19:57]   DATA LOADING
+[20:19:57] ============================================================
+[20:19:57] Loaded 1000 rows, 37 columns
+[20:19:57] Features  : 36
+[20:19:57] Target    : log_stars  (min=10.345, max=13.123, mean=10.871)
+[20:19:57] Train size: 800  |  Test size: 200
+[20:19:57] 
+[20:19:57] ============================================================
+[20:19:57]   RAY TUNE — XGBOOST
+[20:19:57] ============================================================
+[20:19:57] Running 30 trials...
+[20:21:18] XGBoost tuning complete
+[20:21:18] Best RMSE : 0.0791
+[20:21:18] Best R2   : 0.9680
+[20:21:18] Best hyperparameters:
+[20:21:18]   n_estimators           = 600
+[20:21:18]   max_depth              = 7
+[20:21:18]   learning_rate          = 0.07587782129139635
+[20:21:18]   subsample              = 0.7129547567768012
+[20:21:18]   colsample_bytree       = 0.9290342401903515
+[20:21:18]   reg_alpha              = 0.003905219155685161
+[20:21:18]   reg_lambda             = 0.026392048575203435
+[20:21:18] 
+[20:21:18] ============================================================
+[20:21:18]   RAY TUNE — LIGHTGBM
+[20:21:18] ============================================================
+[20:21:18] Running 30 trials...
+[20:22:13] LightGBM tuning complete
+[20:22:13] Best RMSE : 0.0782
+[20:22:13] Best R2   : 0.9687
+[20:22:13] Best hyperparameters:
+[20:22:13]   n_estimators           = 400
+[20:22:13]   max_depth              = 3
+[20:22:13]   learning_rate          = 0.043232507917997993
+[20:22:13]   num_leaves             = 40
+[20:22:13]   subsample              = 0.8905888128853088
+[20:22:13]   colsample_bytree       = 0.7543783770045482
+[20:22:13]   reg_alpha              = 0.003396048971402127
+[20:22:13]   reg_lambda             = 0.15512796559683406
+[20:22:13] Ray shut down
+[20:22:13] 
+[20:22:13] ============================================================
+[20:22:13]   RETRAINING FINAL MODELS
+[20:22:13] ============================================================
+[20:22:13] Training XGBoost with best config...
+[20:22:15]   xgboost                 RMSE=0.0791  MAE=0.0450  R2=0.9680
+[20:22:15] Training LightGBM with best config...
+[20:22:15]   lightgbm                RMSE=0.0782  MAE=0.0557  R2=0.9687
+[20:22:15] Training random_forest...
+[20:22:17]   random_forest           RMSE=0.0976  MAE=0.0553  R2=0.9513
+[20:22:17] Training ridge...
+[20:22:17]   ridge                   RMSE=0.2685  MAE=0.2099  R2=0.6314
+[20:22:17] Training elasticnet...
+[20:22:17]   elasticnet              RMSE=0.3258  MAE=0.2569  R2=0.4570
+[20:22:17] 
+[20:22:17] ============================================================
+[20:22:17]   MODEL COMPARISON
+[20:22:17] ============================================================
+[20:22:17]   Model                       RMSE       MAE        R2
+[20:22:17]   ----------------------  --------  --------  --------
+[20:22:17]   lightgbm                  0.0782    0.0557    0.9687  <-- BEST
+[20:22:17]   xgboost                   0.0791    0.0450    0.9680
+[20:22:17]   random_forest             0.0976    0.0553    0.9513
+[20:22:17]   ridge                     0.2685    0.2099    0.6314
+[20:22:17]   elasticnet                0.3258    0.2569    0.4570
+[20:22:17] 
+[20:22:17] ============================================================
+[20:22:17]   BEST MODEL SELECTED
+[20:22:17] ============================================================
+[20:22:17] Name : lightgbm
+[20:22:17] RMSE : 0.0782
+[20:22:17] MAE  : 0.0557
+[20:22:17] R2   : 0.9687
+[20:22:17] Hyperparameters:
+[20:22:17]   n_estimators           = 400
+[20:22:17]   max_depth              = 3
+[20:22:17]   learning_rate          = 0.043232507917997993
+[20:22:17]   num_leaves             = 40
+[20:22:17]   subsample              = 0.8905888128853088
+[20:22:17]   colsample_bytree       = 0.7543783770045482
+[20:22:17]   reg_alpha              = 0.003396048971402127
+[20:22:17]   reg_lambda             = 0.15512796559683406
+[20:22:17] 
+[20:22:17] ============================================================
+[20:22:17]   SAVING OUTPUTS
+[20:22:17] ============================================================
+[20:22:17] Saved model  : /home/ubuntu/DE2-project/models/model.pkl
+[20:22:17] Saved metadata: /home/ubuntu/DE2-project/models/metadata.json
+[20:22:17] Saved log     : /home/ubuntu/DE2-project/models/training_log.txt
+[20:22:17] 
+[20:22:17] ============================================================
+[20:22:17]   DONE
+[20:22:17] ============================================================
+[20:38:12] 
+[20:38:12] ============================================================
+[20:38:12]   TRAINING RUN STARTED
+[20:38:12] ============================================================
+[20:38:12] Timestamp  : 2026-05-22 20:38:12
+[20:38:12] Data       : /home/ubuntu/DE2-project/data/processed/features.csv
+[20:38:12] Target     : log_stars
+[20:38:12] CV Folds   : 5
+[20:38:12] Tune trials: 50 per model
+[20:38:12] Search     : OptunaSearch (Bayesian)
+[20:38:12] Output     : /home/ubuntu/DE2-project/models
+[20:38:12] Ensemble   : /home/ubuntu/DE2-project/models/ensemble
+[20:38:12] 
+[20:38:12] ============================================================
+[20:38:12]   RAY INIT
+[20:38:12] ============================================================
+[20:38:12] Connected to Ray cluster
+[20:38:12] 
+[20:38:12] ============================================================
+[20:38:12]   DATA LOADING
+[20:38:12] ============================================================
+[20:38:12] Loaded 1000 rows, 37 columns
+[20:38:12] Features   : 36
+[20:38:12] Target     : log_stars  (min=10.345, max=13.123, mean=10.871, std=0.489)
+[20:38:12] Train size : 800  |  Test size: 200
+[20:38:12] Feature list: ['forks', 'open_issues', 'size', 'has_wiki', 'has_pages', 'archived', 'commits', 'contributors', 'releases', 'open_pull_requests', 'subscribers_count', 'network_count', 'repo_age_days', 'commits_per_day', 'fork_ratio', 'has_description', 'has_homepage', 'has_license', 'topics_count', 'lang_C', 'lang_Csharp', 'lang_Cpp', 'lang_CSS', 'lang_Go', 'lang_HTML', 'lang_Java', 'lang_JavaScript', 'lang_Jupyter_Notebook', 'lang_Kotlin', 'lang_Other', 'lang_Python', 'lang_Ruby', 'lang_Rust', 'lang_Shell', 'lang_Swift', 'lang_TypeScript']
+[20:38:12] 
+[20:38:12] ============================================================
+[20:38:12]   RAY TUNE — XGBOOST  (50 trials, 5-fold CV, Optuna search)
+[20:38:12] ============================================================
+[20:38:12] Starting XGBoost hyperparameter search...
+[20:43:02] XGBoost tuning complete
+[20:43:02]   CV mean RMSE : 0.0869
+[20:43:02]   CV mean R2   : 0.9696
+[20:43:02]   CV RMSE std  : 0.0129
+[20:43:02]   Best hyperparameters:
+[20:43:02]     n_estimators             = 1000
+[20:43:02]     max_depth                = 2
+[20:43:02]     learning_rate            = 0.10486121359533707
+[20:43:02]     subsample                = 0.8001783105090935
+[20:43:02]     colsample_bytree         = 0.7972451630285593
+[20:43:02]     colsample_bylevel        = 0.6007939713844732
+[20:43:02]     reg_alpha                = 0.006292260702608475
+[20:43:02]     reg_lambda               = 0.08608737070433149
+[20:43:02]     min_child_weight         = 3
+[20:43:02]     gamma                    = 0.0013452253814794852
+[20:43:02] 
+[20:43:02] ============================================================
+[20:43:02]   RAY TUNE — LIGHTGBM  (50 trials, 5-fold CV, Optuna search)
+[20:43:02] ============================================================
+[20:43:02] Starting LightGBM hyperparameter search...
+[20:48:04] LightGBM tuning complete
+[20:48:04]   CV mean RMSE : 0.0909
+[20:48:04]   CV mean R2   : 0.9667
+[20:48:04]   CV RMSE std  : 0.0176
+[20:48:04]   Best hyperparameters:
+[20:48:04]     n_estimators             = 1000
+[20:48:04]     max_depth                = 4
+[20:48:04]     learning_rate            = 0.05572365842541519
+[20:48:04]     num_leaves               = 20
+[20:48:04]     subsample                = 0.9574291221826022
+[20:48:04]     colsample_bytree         = 0.9656661526149544
+[20:48:04]     reg_alpha                = 0.0007989156564137393
+[20:48:04]     reg_lambda               = 0.5471931278164834
+[20:48:04]     min_child_samples        = 5
+[20:48:04] 
+[20:48:04] ============================================================
+[20:48:04]   RAY TUNE — RANDOM FOREST  (50 trials, 5-fold CV, Optuna search)
+[20:48:04] ============================================================
+[20:48:04] Starting Random Forest hyperparameter search...
+[20:52:57] Random Forest tuning complete
+[20:52:57]   CV mean RMSE : 0.1474
+[20:52:57]   CV mean R2   : 0.9113
+[20:52:57]   CV RMSE std  : 0.0313
+[20:52:57]   Best hyperparameters:
+[20:52:57]     n_estimators             = 400
+[20:52:57]     max_depth                = 10
+[20:52:57]     max_features             = 0.7
+[20:52:57]     min_samples_leaf         = 4
+[20:52:57]     min_samples_split        = 5
+[20:52:57] Ray shut down
+[20:52:57] 
+[20:52:57] ============================================================
+[20:52:57]   RETRAINING FINAL BASE MODELS ON FULL TRAIN SET
+[20:52:57] ============================================================
+[20:52:57] Retraining XGBoost with best config...
+[20:52:58]   xgboost                 RMSE=0.0749  MAE=0.0539  R2=0.9713
+[20:52:58] Retraining LightGBM with best config...
+[20:52:59]   lightgbm                RMSE=0.0699  MAE=0.0462  R2=0.9750
+[20:52:59] Retraining Random Forest with best config...
+[20:53:01]   random_forest           RMSE=0.1182  MAE=0.0725  R2=0.9285
+[20:53:01] Training Ridge baseline...
+[20:53:01]   ridge                   RMSE=0.2685  MAE=0.2099  R2=0.6314
+[20:53:01] Training ElasticNet baseline...
+[20:53:02]   elasticnet              RMSE=0.3258  MAE=0.2569  R2=0.4570
+[20:53:02] 
+[20:53:02] ============================================================
+[20:53:02]   BUILDING STACKING ENSEMBLE (OUT-OF-FOLD)
+[20:53:02] ============================================================
+[20:53:02] Generating out-of-fold predictions using 5-fold CV...
+[20:53:02] This ensures the meta-model never sees predictions made on data it was trained on.
+[20:53:02] Generating OOF predictions per fold:
+[20:53:02]   Fold 1/5 — train=640 rows, val=160 rows
+[20:53:05]   Fold 1 done
+[20:53:05]   Fold 2/5 — train=640 rows, val=160 rows
+[20:53:08]   Fold 2 done
+[20:53:08]   Fold 3/5 — train=640 rows, val=160 rows
+[20:53:11]   Fold 3 done
+[20:53:11]   Fold 4/5 — train=640 rows, val=160 rows
+[20:53:14]   Fold 4 done
+[20:53:14]   Fold 5/5 — train=640 rows, val=160 rows
+[20:53:16]   Fold 5 done
+[20:53:16] OOF predictions complete
+[20:53:17] Test set predictions from final base models stacked
+[20:53:17] Training meta-model (Ridge) on OOF predictions...
+[20:53:17] Meta-model training complete
+[20:53:17]   Meta-model coefficients (weight per base model):
+[20:53:17]     xgboost                = 0.5962
+[20:53:17]     lightgbm               = 0.5375
+[20:53:17]     random_forest          = -0.1469
+[20:53:17]     ridge                  = 0.1540
+[20:53:17]     elasticnet             = -0.1303
+[20:53:17]   Meta-model intercept     = -0.1129
+[20:53:17] Ensemble test set performance:
+[20:53:17]   ensemble                RMSE=0.0633  MAE=0.0428  R2=0.9795
+[20:53:17] 
+[20:53:17] ============================================================
+[20:53:17]   FULL MODEL COMPARISON (test set)
+[20:53:17] ============================================================
+[20:53:17]   Model                       RMSE       MAE        R2
+[20:53:17]   ----------------------  --------  --------  --------
+[20:53:17]   ensemble                  0.0633    0.0428    0.9795  <-- BEST
+[20:53:17]   lightgbm                  0.0699    0.0462    0.9750
+[20:53:17]   xgboost                   0.0749    0.0539    0.9713
+[20:53:17]   random_forest             0.1182    0.0725    0.9285
+[20:53:17]   ridge                     0.2685    0.2099    0.6314
+[20:53:17]   elasticnet                0.3258    0.2569    0.4570
+[20:53:17] 
+[20:53:17] ============================================================
+[20:53:17]   BEST INDIVIDUAL MODEL
+[20:53:17] ============================================================
+[20:53:17] Name : lightgbm
+[20:53:17] RMSE : 0.0699
+[20:53:17] MAE  : 0.0462
+[20:53:17] R2   : 0.9750
+[20:53:17] Hyperparameters:
+[20:53:17]   n_estimators             = 1000
+[20:53:17]   max_depth                = 4
+[20:53:17]   learning_rate            = 0.05572365842541519
+[20:53:17]   num_leaves               = 20
+[20:53:17]   subsample                = 0.9574291221826022
+[20:53:17]   colsample_bytree         = 0.9656661526149544
+[20:53:17]   reg_alpha                = 0.0007989156564137393
+[20:53:17]   reg_lambda               = 0.5471931278164834
+[20:53:17]   min_child_samples        = 5
+[20:53:17] 
+[20:53:17] ============================================================
+[20:53:17]   ENSEMBLE MODEL
+[20:53:17] ============================================================
+[20:53:17] RMSE : 0.0633
+[20:53:17] MAE  : 0.0428
+[20:53:17] R2   : 0.9795
+[20:53:17] RMSE improvement over best individual: 0.0066
+[20:53:17] 
+[20:53:17] ============================================================
+[20:53:17]   SAVING ALL FILES
+[20:53:17] ============================================================
+[20:53:17] Saved ensemble base model : /home/ubuntu/DE2-project/models/ensemble/xgboost.pkl
+[20:53:17] Saved ensemble base model : /home/ubuntu/DE2-project/models/ensemble/lightgbm.pkl
+[20:53:17] Saved ensemble base model : /home/ubuntu/DE2-project/models/ensemble/random_forest.pkl
+[20:53:17] Saved ensemble base model : /home/ubuntu/DE2-project/models/ensemble/ridge.pkl
+[20:53:17] Saved ensemble base model : /home/ubuntu/DE2-project/models/ensemble/elasticnet.pkl
+[20:53:17] Saved meta model          : /home/ubuntu/DE2-project/models/ensemble/meta_model.pkl
+[20:53:17] Saved best individual     : /home/ubuntu/DE2-project/models/best_individual_model_lightgbm.pkl
+[20:53:17] Saved individual metadata : /home/ubuntu/DE2-project/models/best_individual_metadata.json
+[20:53:17] Saved ensemble metadata   : /home/ubuntu/DE2-project/models/ensemble/ensemble_metadata.json
+[20:53:17] Saved training log        : /home/ubuntu/DE2-project/models/training_log.txt
+[20:53:17] 
+[20:53:17] ============================================================
+[20:53:17]   ALL DONE
+[20:53:17] ============================================================
+[20:53:17] Files saved to: /home/ubuntu/DE2-project/models
+[20:53:17]   best_individual_model_lightgbm.pkl
+[20:53:17]   best_individual_metadata.json
+[20:53:17]   ensemble/
+[20:53:17]     xgboost.pkl
+[20:53:17]     lightgbm.pkl
+[20:53:17]     random_forest.pkl
+[20:53:17]     ridge.pkl
+[20:53:17]     elasticnet.pkl
+[20:53:17]     meta_model.pkl
+[20:53:17]     ensemble_metadata.json
+[20:53:17]   training_log.txt

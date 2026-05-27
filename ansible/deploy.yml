@@ -5,7 +5,7 @@
 #
 #    ansible-playbook ansible/deploy.yml \
 #      -i ansible/inventory.ini \
-#      --extra-vars "github_pat=ghp_xxxx mlflow_uri=http://dev2:5000"
+#      --extra-vars "github_pat=ghp_xxxx" --private-key {path_to_key}
 #
 # ═══════════════════════════════════════════════════════════════
 
@@ -18,9 +18,10 @@
     github_pat:   "{{ github_pat }}"
 
     repo_url:     "https://oskarpiibar:{{ github_pat }}@github.com/oskarpiibar/DE2-project"
-    repo_branch:      "oskar"
+    repo_branch:      "main"
     app_dir:          "/home/ubuntu/DE2-project"
     app_src:          "{{ app_dir }}/src/app"
+    app_name:         "star_predictor_app"
 
   tasks:
 
@@ -109,3 +110,90 @@
     - name: Print health status
       debug:
         msg: "{{ inventory_hostname }} — {{ health_result.content }}"
+
+    # ── 6. Create model-receiver (githooks) ───────────────
+    - name: Ensure model-receiver directory exists
+      file:
+        path: /home/ubuntu/model-receiver
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Initialize bare git repository
+      command: git init --bare --initial-branch=main /home/ubuntu/model-receiver
+      args:
+        creates: /home/ubuntu/model-receiver/HEAD
+      become_user: ubuntu
+
+    - name: Create post-receive hook
+      copy:
+        dest: /home/ubuntu/model-receiver/hooks/post-receive
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+        content: |
+          #!/bin/bash
+          while read oldrev newrev ref
+          do
+            if [[ $ref =~ .*/main$ ]];
+            then
+              echo "Main ref received. Deploying main branch to production..."
+              sudo git --work-tree=/home/ubuntu/DE2-project/src/app/models --git-dir=/home/ubuntu/model-receiver checkout -f
+              docker restart {{ app_name }}
+            else
+              echo "Ref $ref successfully received. Doing nothing: only the main branch may be deployed on this server."
+            fi
+          done
+
+
+- name: Deploy nginx load balancer
+  hosts: prod1
+  become: true
+
+  vars:
+    backend_servers: "{{ groups['prod'] }}"
+
+  tasks:
+
+    - name: Ensure nginx config directory exists
+      file: 
+        path: /opt/nginx
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Create nginx config
+      copy:
+        dest: /opt/nginx/nginx.conf
+        content: |
+          events {}
+
+          http {
+              upstream backend {
+              {% for host in backend_servers %}
+                  server {{ hostvars[host]['ansible_host'] }}:8000;
+              {% endfor %}
+              }
+
+              server {
+                  listen 80;
+
+                  location / {
+                      proxy_pass http://backend;
+                      proxy_set_header Host $host;
+                      proxy_set_header X-Real-IP $remote_addr;
+                      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  }
+              }
+          }
+
+    - name: Run nginx container
+      shell: |
+        docker rm -f nginx-lb || true
+        docker run -d \
+          --name nginx-lb \
+          -p 8888:80 \
+          -v /opt/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+          nginx
