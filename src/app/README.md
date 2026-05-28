@@ -2,7 +2,7 @@
 
 ## How It Works
 
-![App mock](figures/app_mock.png)
+![App mock](../../figures/app_mock.png)
 
 ### 1. Add repositories and enter features
 
@@ -12,4 +12,4 @@ Add one or more GitHub repositories using the Add Repo. For each repository, fil
 
 Click the **Predict and rank** button. The app runs the ML model against all loaded repositories and displays them ranked from highest to lowest predicted star count.
 
-![App mock](figures/app_mock_ranking.png)
+![App mock rankings](../../figures/app_mock_rankings.png)
