@@ -13,3 +13,7 @@ Add one or more GitHub repositories using the Add Repo. For each repository, fil
 Click the **Predict and rank** button. The app runs the ML model against all loaded repositories and displays them ranked from highest to lowest predicted star count.
 
 ![App mock rankings](../../figures/app_mock_rankings.png)
+
+### 3. Health endpoint
+
+When going to the `/health` endpoint of the website, it gives an overview of the container status, whether the model is loaded and the exact model used, and the Docker container the website is running on.
