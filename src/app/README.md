@@ -1,5 +1,7 @@
 # Application
 
+The application is deployed on the following URL: http://130.238.27.176:8888/. If the VMs are re-initialised then the application will run on URL: http://<prod1_floating_point_IP>:8888/
+
 ## How It Works
 
 ![App mock](../../figures/app_mock.png)
