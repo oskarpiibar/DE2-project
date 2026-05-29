@@ -1,5 +1,5 @@
 <p align="center">
-    <h1 align="center">Github Stars Predictor</h1>
+    <h1 align="center">Group 1 Github Stars Predictor</h1>
 </p>
 <p align="center">
     <em>A Scalable Machine Learning System for Predicting Github Repository Popularity</em>
