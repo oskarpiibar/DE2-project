@@ -78,6 +78,16 @@
         force:       true        # discard any local changes on the server
         accept_hostkey: true
       become_user: ubuntu
+    
+    - name: Copy best_model.pkl to src/app/models (at first deploy only)
+      copy:
+        src: "{{ app_dir }}/models/best_model.pkl"
+        dest: "{{ app_src }}/models/best_model.pkl"
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+        force: false  # don't overwrite if it already exists in the app directory
+      ignore_errors: true
 
     # ── 3. Build & (re)start the container ────────────────────────────
     - name: Build Docker image
