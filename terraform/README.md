@@ -24,3 +24,11 @@ terraform output     # Show IPs and instance names
 # Command to destroy instances
 terraform destroy    # Remove all instances
 ```
+Another option to run is using `deploy_prod_n_dev.sh` script.
+```sh
+./deploy_prod_n_dev.sh # spawn infra for dev and prod
+
+./deploy_prod_n_dev.sh dev # spawn infra for dev only
+
+./deploy_prod_n_dev.sh prod # spawn infra for prod only
+```

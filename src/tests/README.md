@@ -7,6 +7,8 @@ Tests the Star Predictor under load for two scenarios:
 ## Setup (jump server)
 
 ```bash
+python3 -m venv ~/locust-env
+source ~/locust-env/bin/activate
 pip install locust
 cd src/tests
 chmod +x run_tests.sh
@@ -44,3 +46,30 @@ Each run creates a timestamped folder under `results/` containing:
 - `two_vm_report.html`
 - `docker_stats_*.txt` — CPU/mem sampled during the test
 - `lb_distribution.txt` — how many requests each server handled
+
+## Generating graphs
+
+After running the tests, generate comparison graphs for p50, p95 and CPU usage across all user counts:
+
+```bash
+pip install matplotlib
+python3 plot_results.py results/<timestamp>
+```
+
+If no path is given, the script automatically picks the most recent results folder.
+
+Three PNG files are saved into the results folder:
+- `p50_comparison.png` — median response time, 1 VM vs 2 VMs, for each user count
+- `p95_comparison.png` — 95th percentile response time, 1 VM vs 2 VMs, for each user count
+- `cpu_comparison.png` — container CPU usage, 1 VM vs 2 VMs, for each user count
+
+Copy them to your local machine with:
+```bash
+scp -i ~/.ssh/<your-key> ubuntu@<jump-ip>:~/DE2-project/src/tests/results/<timestamp>/*.png .
+```
+
+## Notes
+
+- Locust must be run inside a virtual environment to avoid system package conflicts
+- The SSH key for docker stats collection is hardcoded to `~/.ssh/group1-key.pem` in `run_tests.sh` — update if your key has a different name
+- The `/health` endpoint returns the container hostname, used to verify NGINX is distributing requests across both servers
