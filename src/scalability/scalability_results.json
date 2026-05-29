@@ -1,0 +1,780 @@
+{
+  "1_nodes": {
+    "num_nodes": 1,
+    "num_runs": 3,
+    "num_samples": 50,
+    "cv_folds": 5,
+    "cluster_cpus": 2.0,
+    "cluster_ram_gb": 2.44,
+    "timestamp": "2026-05-25 01:51:36",
+    "averaged_metrics": {
+      "total_time_s": {
+        "mean": 1470.13,
+        "std": 30.3455
+      },
+      "xgb_tune_time_s": {
+        "mean": 440.6133,
+        "std": 9.1911
+      },
+      "lgb_tune_time_s": {
+        "mean": 442.96,
+        "std": 8.1212
+      },
+      "rf_tune_time_s": {
+        "mean": 581.3133,
+        "std": 23.779
+      },
+      "retrain_time_s": {
+        "mean": 5.22,
+        "std": 1.2355
+      },
+      "cpu_mean_pct": {
+        "mean": 79.5033,
+        "std": 1.3259
+      },
+      "cpu_max_pct": {
+        "mean": 100.0,
+        "std": 0.0
+      },
+      "ram_peak_mb": {
+        "mean": 3253.6567,
+        "std": 55.4751
+      },
+      "ram_mean_mb": {
+        "mean": 3001.0733,
+        "std": 52.6938
+      }
+    },
+    "per_run_details": [
+      {
+        "run": 1,
+        "total_time_s": 1497.64,
+        "xgb_tune_time_s": 453.26,
+        "lgb_tune_time_s": 454.11,
+        "rf_tune_time_s": 586.68,
+        "retrain_time_s": 3.55,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.06355835452519043,
+          "mae": 0.04487648390214053,
+          "r2": 0.9793421805527561
+        },
+        "resources": {
+          "cpu_mean_pct": 77.63,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 75.16,
+          "ram_peak_pct": 81.6,
+          "ram_peak_mb": 3191.37,
+          "ram_mean_mb": 2940.33,
+          "samples_taken": 2990
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.07215958205428784,
+            "mae": 0.0411837749631787,
+            "r2": 0.9733726954684471
+          },
+          "lightgbm": {
+            "rmse": 0.06355835452519043,
+            "mae": 0.04487648390214053,
+            "r2": 0.9793421805527561
+          },
+          "random_forest": {
+            "rmse": 0.11093417813606313,
+            "mae": 0.06897314828683979,
+            "r2": 0.9370682327985189
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      },
+      {
+        "run": 2,
+        "total_time_s": 1427.85,
+        "xgb_tune_time_s": 431.69,
+        "lgb_tune_time_s": 439.77,
+        "rf_tune_time_s": 549.88,
+        "retrain_time_s": 6.5,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.063228651040491,
+          "mae": 0.04522195747411292,
+          "r2": 0.9795559459810056
+        },
+        "resources": {
+          "cpu_mean_pct": 80.37,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 76.54,
+          "ram_peak_pct": 82.9,
+          "ram_peak_mb": 3243.49,
+          "ram_mean_mb": 2994.06,
+          "samples_taken": 2851
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.07666151544425291,
+            "mae": 0.04932218570762438,
+            "r2": 0.9699465740102172
+          },
+          "lightgbm": {
+            "rmse": 0.063228651040491,
+            "mae": 0.04522195747411292,
+            "r2": 0.9795559459810056
+          },
+          "random_forest": {
+            "rmse": 0.11216969654277986,
+            "mae": 0.06783466268287956,
+            "r2": 0.9356586340038464
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      },
+      {
+        "run": 3,
+        "total_time_s": 1484.9,
+        "xgb_tune_time_s": 436.89,
+        "lgb_tune_time_s": 435.0,
+        "rf_tune_time_s": 607.38,
+        "retrain_time_s": 5.61,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.06636521095663282,
+          "mae": 0.04758944882193585,
+          "r2": 0.9774773159022492
+        },
+        "resources": {
+          "cpu_mean_pct": 80.51,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 78.45,
+          "ram_peak_pct": 85.0,
+          "ram_peak_mb": 3326.11,
+          "ram_mean_mb": 3068.83,
+          "samples_taken": 2964
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.06862415845761025,
+            "mae": 0.0440964495973778,
+            "r2": 0.9759179612746913
+          },
+          "lightgbm": {
+            "rmse": 0.06636521095663282,
+            "mae": 0.04758944882193585,
+            "r2": 0.9774773159022492
+          },
+          "random_forest": {
+            "rmse": 0.11145268452246257,
+            "mae": 0.06749866473830546,
+            "r2": 0.9364785717708862
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      }
+    ],
+    "best_model": {
+      "name": "lightgbm",
+      "type": "lightgbm",
+      "params": {
+        "n_estimators": 1000,
+        "max_depth": 2,
+        "learning_rate": 0.03271824901241625,
+        "num_leaves": 40,
+        "subsample": 0.6811929545791768,
+        "colsample_bytree": 0.9464739985763716,
+        "reg_alpha": 0.025524823892912038,
+        "reg_lambda": 0.0005277592085252656,
+        "min_child_samples": 5
+      },
+      "metrics": {
+        "rmse": 0.06636521095663282,
+        "mae": 0.04758944882193585,
+        "r2": 0.9774773159022492
+      },
+      "file": "best_model_1node.pkl"
+    },
+    "features": [
+      "forks",
+      "open_issues",
+      "size",
+      "has_wiki",
+      "has_pages",
+      "archived",
+      "commits",
+      "contributors",
+      "releases",
+      "open_pull_requests",
+      "subscribers_count",
+      "network_count",
+      "repo_age_days",
+      "commits_per_day",
+      "fork_ratio",
+      "has_description",
+      "has_homepage",
+      "has_license",
+      "topics_count",
+      "lang_C",
+      "lang_Csharp",
+      "lang_Cpp",
+      "lang_CSS",
+      "lang_Go",
+      "lang_HTML",
+      "lang_Java",
+      "lang_JavaScript",
+      "lang_Jupyter_Notebook",
+      "lang_Kotlin",
+      "lang_Other",
+      "lang_Python",
+      "lang_Ruby",
+      "lang_Rust",
+      "lang_Shell",
+      "lang_Swift",
+      "lang_TypeScript"
+    ],
+    "target": "log_stars"
+  },
+  "2_nodes": {
+    "num_nodes": 2,
+    "num_runs": 3,
+    "num_samples": 50,
+    "cv_folds": 5,
+    "cluster_cpus": 4.0,
+    "cluster_ram_gb": 4.9,
+    "timestamp": "2026-05-25 02:40:15",
+    "averaged_metrics": {
+      "total_time_s": {
+        "mean": 914.8233,
+        "std": 42.4382
+      },
+      "xgb_tune_time_s": {
+        "mean": 282.58,
+        "std": 4.74
+      },
+      "lgb_tune_time_s": {
+        "mean": 295.76,
+        "std": 0.9126
+      },
+      "rf_tune_time_s": {
+        "mean": 330.77,
+        "std": 36.6384
+      },
+      "retrain_time_s": {
+        "mean": 5.7133,
+        "std": 2.1776
+      },
+      "cpu_mean_pct": {
+        "mean": 65.2533,
+        "std": 2.8852
+      },
+      "cpu_max_pct": {
+        "mean": 100.0,
+        "std": 0.0
+      },
+      "ram_peak_mb": {
+        "mean": 3392.07,
+        "std": 84.9408
+      },
+      "ram_mean_mb": {
+        "mean": 3082.1,
+        "std": 72.9832
+      }
+    },
+    "per_run_details": [
+      {
+        "run": 1,
+        "total_time_s": 905.5,
+        "xgb_tune_time_s": 280.54,
+        "lgb_tune_time_s": 294.6,
+        "rf_tune_time_s": 322.59,
+        "retrain_time_s": 7.77,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.0579726214745166,
+          "mae": 0.04513580812127061,
+          "r2": 0.9828135940607424
+        },
+        "resources": {
+          "cpu_mean_pct": 66.28,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 76.18,
+          "ram_peak_pct": 83.7,
+          "ram_peak_mb": 3273.98,
+          "ram_mean_mb": 2980.12,
+          "samples_taken": 1808
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.06345220620991895,
+            "mae": 0.04591510813267026,
+            "r2": 0.9794111238620914
+          },
+          "lightgbm": {
+            "rmse": 0.0579726214745166,
+            "mae": 0.04513580812127061,
+            "r2": 0.9828135940607424
+          },
+          "random_forest": {
+            "rmse": 0.11287579761007449,
+            "mae": 0.06820976426614228,
+            "r2": 0.9348460348291646
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      },
+      {
+        "run": 2,
+        "total_time_s": 970.83,
+        "xgb_tune_time_s": 289.13,
+        "lgb_tune_time_s": 295.85,
+        "rf_tune_time_s": 379.17,
+        "retrain_time_s": 6.67,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.06915842795959033,
+          "mae": 0.043310351238603634,
+          "r2": 0.9755415228877599
+        },
+        "resources": {
+          "cpu_mean_pct": 68.16,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 79.74,
+          "ram_peak_pct": 88.7,
+          "ram_peak_mb": 3470.18,
+          "ram_mean_mb": 3119.31,
+          "samples_taken": 1938
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.07382435078317437,
+            "mae": 0.05084842237300222,
+            "r2": 0.9721299043070627
+          },
+          "lightgbm": {
+            "rmse": 0.06915842795959033,
+            "mae": 0.043310351238603634,
+            "r2": 0.9755415228877599
+          },
+          "random_forest": {
+            "rmse": 0.11849195896067455,
+            "mae": 0.07170646228706679,
+            "r2": 0.9282012396455099
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      },
+      {
+        "run": 3,
+        "total_time_s": 868.14,
+        "xgb_tune_time_s": 278.07,
+        "lgb_tune_time_s": 296.83,
+        "rf_tune_time_s": 290.55,
+        "retrain_time_s": 2.7,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.07167407411923013,
+          "mae": 0.0495074748052587,
+          "r2": 0.9737298005576346
+        },
+        "resources": {
+          "cpu_mean_pct": 61.32,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 80.45,
+          "ram_peak_pct": 87.7,
+          "ram_peak_mb": 3432.05,
+          "ram_mean_mb": 3146.87,
+          "samples_taken": 1733
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.0726262438352447,
+            "mae": 0.0480043342621236,
+            "r2": 0.9730271800208669
+          },
+          "lightgbm": {
+            "rmse": 0.07167407411923013,
+            "mae": 0.0495074748052587,
+            "r2": 0.9737298005576346
+          },
+          "random_forest": {
+            "rmse": 0.11937143742122162,
+            "mae": 0.07272733712694623,
+            "r2": 0.9271314657149681
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      }
+    ],
+    "best_model": {
+      "name": "lightgbm",
+      "type": "lightgbm",
+      "params": {
+        "n_estimators": 600,
+        "max_depth": 3,
+        "learning_rate": 0.11206600010792186,
+        "num_leaves": 31,
+        "subsample": 0.8020510519148638,
+        "colsample_bytree": 0.8441745890209227,
+        "reg_alpha": 0.002503933129760289,
+        "reg_lambda": 0.012276295611850079,
+        "min_child_samples": 10
+      },
+      "metrics": {
+        "rmse": 0.07167407411923013,
+        "mae": 0.0495074748052587,
+        "r2": 0.9737298005576346
+      },
+      "file": "best_model_2node.pkl"
+    },
+    "features": [
+      "forks",
+      "open_issues",
+      "size",
+      "has_wiki",
+      "has_pages",
+      "archived",
+      "commits",
+      "contributors",
+      "releases",
+      "open_pull_requests",
+      "subscribers_count",
+      "network_count",
+      "repo_age_days",
+      "commits_per_day",
+      "fork_ratio",
+      "has_description",
+      "has_homepage",
+      "has_license",
+      "topics_count",
+      "lang_C",
+      "lang_Csharp",
+      "lang_Cpp",
+      "lang_CSS",
+      "lang_Go",
+      "lang_HTML",
+      "lang_Java",
+      "lang_JavaScript",
+      "lang_Jupyter_Notebook",
+      "lang_Kotlin",
+      "lang_Other",
+      "lang_Python",
+      "lang_Ruby",
+      "lang_Rust",
+      "lang_Shell",
+      "lang_Swift",
+      "lang_TypeScript"
+    ],
+    "target": "log_stars"
+  },
+  "3_nodes": {
+    "num_nodes": 3,
+    "num_runs": 3,
+    "num_samples": 50,
+    "cv_folds": 5,
+    "cluster_cpus": 6.0,
+    "cluster_ram_gb": 7.38,
+    "timestamp": "2026-05-25 03:20:01",
+    "averaged_metrics": {
+      "total_time_s": {
+        "mean": 701.7633,
+        "std": 12.2357
+      },
+      "xgb_tune_time_s": {
+        "mean": 226.1667,
+        "std": 4.8572
+      },
+      "lgb_tune_time_s": {
+        "mean": 226.34,
+        "std": 4.1235
+      },
+      "rf_tune_time_s": {
+        "mean": 242.3533,
+        "std": 7.108
+      },
+      "retrain_time_s": {
+        "mean": 6.9033,
+        "std": 0.7493
+      },
+      "cpu_mean_pct": {
+        "mean": 53.2633,
+        "std": 1.822
+      },
+      "cpu_max_pct": {
+        "mean": 100.0,
+        "std": 0.0
+      },
+      "ram_peak_mb": {
+        "mean": 3426.3867,
+        "std": 39.3183
+      },
+      "ram_mean_mb": {
+        "mean": 3120.6067,
+        "std": 50.6015
+      }
+    },
+    "per_run_details": [
+      {
+        "run": 1,
+        "total_time_s": 685.58,
+        "xgb_tune_time_s": 219.3,
+        "lgb_tune_time_s": 220.93,
+        "rf_tune_time_s": 237.82,
+        "retrain_time_s": 7.53,
+        "best_model": "lightgbm",
+        "best_metrics": {
+          "rmse": 0.07392142912378455,
+          "mae": 0.049876445081599885,
+          "r2": 0.9720565582763314
+        },
+        "resources": {
+          "cpu_mean_pct": 51.99,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 77.98,
+          "ram_peak_pct": 86.2,
+          "ram_peak_mb": 3371.18,
+          "ram_mean_mb": 3050.41,
+          "samples_taken": 1369
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.07577919452730143,
+            "mae": 0.05559620173414692,
+            "r2": 0.970634381221476
+          },
+          "lightgbm": {
+            "rmse": 0.07392142912378455,
+            "mae": 0.049876445081599885,
+            "r2": 0.9720565582763314
+          },
+          "random_forest": {
+            "rmse": 0.11287579761007449,
+            "mae": 0.06820976426614228,
+            "r2": 0.9348460348291646
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      },
+      {
+        "run": 2,
+        "total_time_s": 715.16,
+        "xgb_tune_time_s": 229.76,
+        "lgb_tune_time_s": 227.16,
+        "rf_tune_time_s": 252.39,
+        "retrain_time_s": 5.85,
+        "best_model": "xgboost",
+        "best_metrics": {
+          "rmse": 0.0647461513980165,
+          "mae": 0.04680285430892135,
+          "r2": 0.9785628471815998
+        },
+        "resources": {
+          "cpu_mean_pct": 55.84,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 80.36,
+          "ram_peak_pct": 88.4,
+          "ram_peak_mb": 3459.74,
+          "ram_mean_mb": 3143.66,
+          "samples_taken": 1428
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.0647461513980165,
+            "mae": 0.04680285430892135,
+            "r2": 0.9785628471815998
+          },
+          "lightgbm": {
+            "rmse": 0.07269454228203616,
+            "mae": 0.047165262244986295,
+            "r2": 0.9729764251470003
+          },
+          "random_forest": {
+            "rmse": 0.11145268452246257,
+            "mae": 0.06749866473830546,
+            "r2": 0.9364785717708862
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      },
+      {
+        "run": 3,
+        "total_time_s": 704.55,
+        "xgb_tune_time_s": 229.44,
+        "lgb_tune_time_s": 230.93,
+        "rf_tune_time_s": 236.85,
+        "retrain_time_s": 7.33,
+        "best_model": "xgboost",
+        "best_metrics": {
+          "rmse": 0.07537172913414829,
+          "mae": 0.04604149186805279,
+          "r2": 0.9709493305752542
+        },
+        "resources": {
+          "cpu_mean_pct": 51.96,
+          "cpu_max_pct": 100.0,
+          "ram_mean_pct": 80.98,
+          "ram_peak_pct": 88.1,
+          "ram_peak_mb": 3448.24,
+          "ram_mean_mb": 3167.75,
+          "samples_taken": 1406
+        },
+        "all_model_scores": {
+          "xgboost": {
+            "rmse": 0.07537172913414829,
+            "mae": 0.04604149186805279,
+            "r2": 0.9709493305752542
+          },
+          "lightgbm": {
+            "rmse": 0.0770593575950075,
+            "mae": 0.05348744814541356,
+            "r2": 0.9696338344483675
+          },
+          "random_forest": {
+            "rmse": 0.11216969654277986,
+            "mae": 0.06783466268287956,
+            "r2": 0.9356586340038464
+          },
+          "ridge": {
+            "rmse": 0.2684805799619608,
+            "mae": 0.20991483012030046,
+            "r2": 0.6313918429762934
+          },
+          "elasticnet": {
+            "rmse": 0.3258499867875421,
+            "mae": 0.2569045957586695,
+            "r2": 0.4570315406653268
+          }
+        }
+      }
+    ],
+    "best_model": {
+      "name": "xgboost",
+      "type": "xgboost",
+      "params": {
+        "n_estimators": 1000,
+        "max_depth": 5,
+        "learning_rate": 0.023178804029774982,
+        "subsample": 0.8382895560945902,
+        "colsample_bytree": 0.923565050200341,
+        "colsample_bylevel": 0.8211708332721223,
+        "reg_alpha": 0.003132619069539316,
+        "reg_lambda": 0.7357582340155896,
+        "min_child_weight": 5,
+        "gamma": 0.0013301130821597633
+      },
+      "metrics": {
+        "rmse": 0.07537172913414829,
+        "mae": 0.04604149186805279,
+        "r2": 0.9709493305752542
+      },
+      "file": "best_model_3node.pkl"
+    },
+    "features": [
+      "forks",
+      "open_issues",
+      "size",
+      "has_wiki",
+      "has_pages",
+      "archived",
+      "commits",
+      "contributors",
+      "releases",
+      "open_pull_requests",
+      "subscribers_count",
+      "network_count",
+      "repo_age_days",
+      "commits_per_day",
+      "fork_ratio",
+      "has_description",
+      "has_homepage",
+      "has_license",
+      "topics_count",
+      "lang_C",
+      "lang_Csharp",
+      "lang_Cpp",
+      "lang_CSS",
+      "lang_Go",
+      "lang_HTML",
+      "lang_Java",
+      "lang_JavaScript",
+      "lang_Jupyter_Notebook",
+      "lang_Kotlin",
+      "lang_Other",
+      "lang_Python",
+      "lang_Ruby",
+      "lang_Rust",
+      "lang_Shell",
+      "lang_Swift",
+      "lang_TypeScript"
+    ],
+    "target": "log_stars"
+  }
+}

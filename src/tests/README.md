@@ -73,3 +73,5 @@ scp -i ~/.ssh/<your-key> ubuntu@<jump-ip>:~/DE2-project/src/tests/results/<times
 - Locust must be run inside a virtual environment to avoid system package conflicts
 - The SSH key for docker stats collection is hardcoded to `~/.ssh/group1-key.pem` in `run_tests.sh` — update if your key has a different name
 - The `/health` endpoint returns the container hostname, used to verify NGINX is distributing requests across both servers
+
+

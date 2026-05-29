@@ -1,0 +1,279 @@
+[00:38:00] 
+[00:38:00] ============================================================
+[00:38:00]   SCALABILITY RUN — 1 NODE(S)
+[00:38:00] ============================================================
+[00:38:00] Timestamp  : 2026-05-25 00:38:00
+[00:38:00] Nodes      : 1
+[00:38:00] Runs       : 3 (will be averaged)
+[00:38:00] Trials     : 50 per model per run
+[00:38:00] CV folds   : 5
+[00:38:00] Data       : /home/ubuntu/DE2-project/data/processed/features.csv
+[00:38:04] Cluster CPUs    : 2.0
+[00:38:04] Cluster RAM (GB): 2.44
+[00:38:04] Cluster nodes   : 1
+[00:38:05] Train: 800  Test: 200  Features: 36
+[00:38:05] 
+[00:38:05] ============================================================
+[00:38:05]   STARTING 3 PIPELINE RUNS ON 1 NODE(S)
+[00:38:05] ============================================================
+[00:38:05] 
+[00:38:05]   ── Run 1 of 3 ──────────────────────────────
+[00:38:05]   [Run 1] Tuning XGBoost...
+[00:45:38]   [Run 1] XGBoost done in 453.26s  best CV RMSE=0.0889
+[00:45:38]   [Run 1] Tuning LightGBM...
+[00:53:12]   [Run 1] LightGBM done in 454.11s  best CV RMSE=0.0840
+[00:53:12]   [Run 1] Tuning Random Forest...
+[01:02:59]   [Run 1] Random Forest done in 586.68s  best CV RMSE=0.1395
+[01:02:59]   [Run 1] Retraining final models...
+[01:03:03]   [Run 1] Retrain done in 3.55s
+[01:03:03]   [Run 1] Total time: 1497.64s
+[01:03:03]   [Run 1] Best model: lightgbm  RMSE=0.0636  R2=0.9793
+[01:03:03]   [Run 1] CPU mean=77.63%  peak=100.0%
+[01:03:03]   [Run 1] RAM mean=2940.33MB  peak=3191.37MB
+[01:03:03] 
+[01:03:03]   ── Run 2 of 3 ──────────────────────────────
+[01:03:03]   [Run 2] Tuning XGBoost...
+[01:10:14]   [Run 2] XGBoost done in 431.69s  best CV RMSE=0.0903
+[01:10:14]   [Run 2] Tuning LightGBM...
+[01:17:34]   [Run 2] LightGBM done in 439.77s  best CV RMSE=0.0919
+[01:17:34]   [Run 2] Tuning Random Forest...
+[01:26:44]   [Run 2] Random Forest done in 549.88s  best CV RMSE=0.1390
+[01:26:44]   [Run 2] Retraining final models...
+[01:26:51]   [Run 2] Retrain done in 6.5s
+[01:26:51]   [Run 2] Total time: 1427.85s
+[01:26:51]   [Run 2] Best model: lightgbm  RMSE=0.0632  R2=0.9796
+[01:26:51]   [Run 2] CPU mean=80.37%  peak=100.0%
+[01:26:51]   [Run 2] RAM mean=2994.06MB  peak=3243.49MB
+[01:26:51] 
+[01:26:51]   ── Run 3 of 3 ──────────────────────────────
+[01:26:51]   [Run 3] Tuning XGBoost...
+[01:34:08]   [Run 3] XGBoost done in 436.89s  best CV RMSE=0.0803
+[01:34:08]   [Run 3] Tuning LightGBM...
+[01:41:23]   [Run 3] LightGBM done in 435.0s  best CV RMSE=0.0872
+[01:41:23]   [Run 3] Tuning Random Forest...
+[01:51:30]   [Run 3] Random Forest done in 607.38s  best CV RMSE=0.1392
+[01:51:30]   [Run 3] Retraining final models...
+[01:51:36]   [Run 3] Retrain done in 5.61s
+[01:51:36]   [Run 3] Total time: 1484.9s
+[01:51:36]   [Run 3] Best model: lightgbm  RMSE=0.0664  R2=0.9775
+[01:51:36]   [Run 3] CPU mean=80.51%  peak=100.0%
+[01:51:36]   [Run 3] RAM mean=3068.83MB  peak=3326.11MB
+[01:51:36] Ray shut down
+[01:51:36] 
+[01:51:36] ============================================================
+[01:51:36]   AVERAGING RESULTS ACROSS RUNS
+[01:51:36] ============================================================
+[01:51:36] Averaged over 3 runs:
+[01:51:36]   Total time     : 1470.13s  (std=30.3455s)
+[01:51:36]   XGBoost tune   : 440.6133s
+[01:51:36]   LightGBM tune  : 442.96s
+[01:51:36]   RF tune        : 581.3133s
+[01:51:36]   Retrain        : 5.22s
+[01:51:36]   CPU mean       : 79.5033%
+[01:51:36]   CPU peak       : 100.0%
+[01:51:36]   RAM peak       : 3253.6567 MB
+[01:51:36]   Best model     : lightgbm  RMSE=0.0664  R2=0.9775
+[01:51:36] 
+[01:51:36] ============================================================
+[01:51:36]   SAVING BEST MODEL
+[01:51:36] ============================================================
+[01:51:36] Saved model : /home/ubuntu/DE2-project/src/scalability/best_model_1node.pkl
+[01:51:36] No existing results file — creating new one
+[01:51:36] Saved results : /home/ubuntu/DE2-project/src/scalability/scalability_results.json
+[01:51:36] 
+[01:51:36] ============================================================
+[01:51:36]   DONE
+[01:51:36] ============================================================
+[01:51:36] Output directory : /home/ubuntu/DE2-project/src/scalability
+[01:51:36]   best_model_1node.pkl
+[01:51:36]   scalability_results.json  (node=1 added)
+[01:51:36]   scalability_log.txt
+[01:54:29] 
+[01:54:29] ============================================================
+[01:54:29]   SCALABILITY RUN — 2 NODE(S)
+[01:54:29] ============================================================
+[01:54:29] Timestamp  : 2026-05-25 01:54:29
+[01:54:29] Nodes      : 2
+[01:54:29] Runs       : 3 (will be averaged)
+[01:54:29] Trials     : 50 per model per run
+[01:54:29] CV folds   : 5
+[01:54:29] Data       : /home/ubuntu/DE2-project/data/processed/features.csv
+[01:54:29] Cluster CPUs    : 4.0
+[01:54:29] Cluster RAM (GB): 4.9
+[01:54:29] Cluster nodes   : 2
+[01:54:29] Train: 800  Test: 200  Features: 36
+[01:54:29] 
+[01:54:29] ============================================================
+[01:54:29]   STARTING 3 PIPELINE RUNS ON 2 NODE(S)
+[01:54:29] ============================================================
+[01:54:29] 
+[01:54:29]   ── Run 1 of 3 ──────────────────────────────
+[01:54:29]   [Run 1] Tuning XGBoost...
+[01:59:10]   [Run 1] XGBoost done in 280.54s  best CV RMSE=0.0839
+[01:59:10]   [Run 1] Tuning LightGBM...
+[02:04:04]   [Run 1] LightGBM done in 294.6s  best CV RMSE=0.0862
+[02:04:04]   [Run 1] Tuning Random Forest...
+[02:09:27]   [Run 1] Random Forest done in 322.59s  best CV RMSE=0.1400
+[02:09:27]   [Run 1] Retraining final models...
+[02:09:35]   [Run 1] Retrain done in 7.77s
+[02:09:35]   [Run 1] Total time: 905.5s
+[02:09:35]   [Run 1] Best model: lightgbm  RMSE=0.0580  R2=0.9828
+[02:09:35]   [Run 1] CPU mean=66.28%  peak=100.0%
+[02:09:35]   [Run 1] RAM mean=2980.12MB  peak=3273.98MB
+[02:09:35] 
+[02:09:35]   ── Run 2 of 3 ──────────────────────────────
+[02:09:35]   [Run 2] Tuning XGBoost...
+[02:14:24]   [Run 2] XGBoost done in 289.13s  best CV RMSE=0.0872
+[02:14:24]   [Run 2] Tuning LightGBM...
+[02:19:20]   [Run 2] LightGBM done in 295.85s  best CV RMSE=0.0899
+[02:19:20]   [Run 2] Tuning Random Forest...
+[02:25:39]   [Run 2] Random Forest done in 379.17s  best CV RMSE=0.1463
+[02:25:39]   [Run 2] Retraining final models...
+[02:25:46]   [Run 2] Retrain done in 6.67s
+[02:25:46]   [Run 2] Total time: 970.83s
+[02:25:46]   [Run 2] Best model: lightgbm  RMSE=0.0692  R2=0.9755
+[02:25:46]   [Run 2] CPU mean=68.16%  peak=100.0%
+[02:25:46]   [Run 2] RAM mean=3119.31MB  peak=3470.18MB
+[02:25:46] 
+[02:25:46]   ── Run 3 of 3 ──────────────────────────────
+[02:25:46]   [Run 3] Tuning XGBoost...
+[02:30:24]   [Run 3] XGBoost done in 278.07s  best CV RMSE=0.0850
+[02:30:24]   [Run 3] Tuning LightGBM...
+[02:35:21]   [Run 3] LightGBM done in 296.83s  best CV RMSE=0.0959
+[02:35:21]   [Run 3] Tuning Random Forest...
+[02:40:11]   [Run 3] Random Forest done in 290.55s  best CV RMSE=0.1494
+[02:40:11]   [Run 3] Retraining final models...
+[02:40:14]   [Run 3] Retrain done in 2.7s
+[02:40:14]   [Run 3] Total time: 868.14s
+[02:40:14]   [Run 3] Best model: lightgbm  RMSE=0.0717  R2=0.9737
+[02:40:14]   [Run 3] CPU mean=61.32%  peak=100.0%
+[02:40:14]   [Run 3] RAM mean=3146.87MB  peak=3432.05MB
+[02:40:15] Ray shut down
+[02:40:15] 
+[02:40:15] ============================================================
+[02:40:15]   AVERAGING RESULTS ACROSS RUNS
+[02:40:15] ============================================================
+[02:40:15] Averaged over 3 runs:
+[02:40:15]   Total time     : 914.8233s  (std=42.4382s)
+[02:40:15]   XGBoost tune   : 282.58s
+[02:40:15]   LightGBM tune  : 295.76s
+[02:40:15]   RF tune        : 330.77s
+[02:40:15]   Retrain        : 5.7133s
+[02:40:15]   CPU mean       : 65.2533%
+[02:40:15]   CPU peak       : 100.0%
+[02:40:15]   RAM peak       : 3392.07 MB
+[02:40:15]   Best model     : lightgbm  RMSE=0.0717  R2=0.9737
+[02:40:15] 
+[02:40:15] ============================================================
+[02:40:15]   SAVING BEST MODEL
+[02:40:15] ============================================================
+[02:40:15] Saved model : /home/ubuntu/DE2-project/src/scalability/best_model_2node.pkl
+[02:40:15] Loaded existing results file — appending node=2 data
+[02:40:15] Saved results : /home/ubuntu/DE2-project/src/scalability/scalability_results.json
+[02:40:15] 
+[02:40:15] ============================================================
+[02:40:15]   DONE
+[02:40:15] ============================================================
+[02:40:15] Output directory : /home/ubuntu/DE2-project/src/scalability
+[02:40:15]   best_model_2node.pkl
+[02:40:15]   scalability_results.json  (node=2 added)
+[02:40:15]   scalability_log.txt
+[02:44:54] 
+[02:44:54] ============================================================
+[02:44:54]   SCALABILITY RUN — 3 NODE(S)
+[02:44:54] ============================================================
+[02:44:54] Timestamp  : 2026-05-25 02:44:54
+[02:44:54] Nodes      : 3
+[02:44:54] Runs       : 3 (will be averaged)
+[02:44:54] Trials     : 50 per model per run
+[02:44:54] CV folds   : 5
+[02:44:54] Data       : /home/ubuntu/DE2-project/data/processed/features.csv
+[02:44:54] Cluster CPUs    : 6.0
+[02:44:54] Cluster RAM (GB): 7.38
+[02:44:54] Cluster nodes   : 3
+[02:44:54] Train: 800  Test: 200  Features: 36
+[02:44:54] 
+[02:44:54] ============================================================
+[02:44:54]   STARTING 3 PIPELINE RUNS ON 3 NODE(S)
+[02:44:54] ============================================================
+[02:44:54] 
+[02:44:54]   ── Run 1 of 3 ──────────────────────────────
+[02:44:54]   [Run 1] Tuning XGBoost...
+[02:48:34]   [Run 1] XGBoost done in 219.3s  best CV RMSE=0.0812
+[02:48:34]   [Run 1] Tuning LightGBM...
+[02:52:15]   [Run 1] LightGBM done in 220.93s  best CV RMSE=0.0927
+[02:52:15]   [Run 1] Tuning Random Forest...
+[02:56:12]   [Run 1] Random Forest done in 237.82s  best CV RMSE=0.1400
+[02:56:12]   [Run 1] Retraining final models...
+[02:56:20]   [Run 1] Retrain done in 7.53s
+[02:56:20]   [Run 1] Total time: 685.58s
+[02:56:20]   [Run 1] Best model: lightgbm  RMSE=0.0739  R2=0.9721
+[02:56:20]   [Run 1] CPU mean=51.99%  peak=100.0%
+[02:56:20]   [Run 1] RAM mean=3050.41MB  peak=3371.18MB
+[02:56:20] 
+[02:56:20]   ── Run 2 of 3 ──────────────────────────────
+[02:56:20]   [Run 2] Tuning XGBoost...
+[03:00:10]   [Run 2] XGBoost done in 229.76s  best CV RMSE=0.0807
+[03:00:10]   [Run 2] Tuning LightGBM...
+[03:03:57]   [Run 2] LightGBM done in 227.16s  best CV RMSE=0.0894
+[03:03:57]   [Run 2] Tuning Random Forest...
+[03:08:10]   [Run 2] Random Forest done in 252.39s  best CV RMSE=0.1392
+[03:08:10]   [Run 2] Retraining final models...
+[03:08:16]   [Run 2] Retrain done in 5.85s
+[03:08:16]   [Run 2] Total time: 715.16s
+[03:08:16]   [Run 2] Best model: xgboost  RMSE=0.0647  R2=0.9786
+[03:08:16]   [Run 2] CPU mean=55.84%  peak=100.0%
+[03:08:16]   [Run 2] RAM mean=3143.66MB  peak=3459.74MB
+[03:08:16] 
+[03:08:16]   ── Run 3 of 3 ──────────────────────────────
+[03:08:16]   [Run 3] Tuning XGBoost...
+[03:12:05]   [Run 3] XGBoost done in 229.44s  best CV RMSE=0.0938
+[03:12:05]   [Run 3] Tuning LightGBM...
+[03:15:56]   [Run 3] LightGBM done in 230.93s  best CV RMSE=0.0903
+[03:15:56]   [Run 3] Tuning Random Forest...
+[03:19:53]   [Run 3] Random Forest done in 236.85s  best CV RMSE=0.1390
+[03:19:53]   [Run 3] Retraining final models...
+[03:20:01]   [Run 3] Retrain done in 7.33s
+[03:20:01]   [Run 3] Total time: 704.55s
+[03:20:01]   [Run 3] Best model: xgboost  RMSE=0.0754  R2=0.9709
+[03:20:01]   [Run 3] CPU mean=51.96%  peak=100.0%
+[03:20:01]   [Run 3] RAM mean=3167.75MB  peak=3448.24MB
+[03:20:01] Ray shut down
+[03:20:01] 
+[03:20:01] ============================================================
+[03:20:01]   AVERAGING RESULTS ACROSS RUNS
+[03:20:01] ============================================================
+[03:20:01] Averaged over 3 runs:
+[03:20:01]   Total time     : 701.7633s  (std=12.2357s)
+[03:20:01]   XGBoost tune   : 226.1667s
+[03:20:01]   LightGBM tune  : 226.34s
+[03:20:01]   RF tune        : 242.3533s
+[03:20:01]   Retrain        : 6.9033s
+[03:20:01]   CPU mean       : 53.2633%
+[03:20:01]   CPU peak       : 100.0%
+[03:20:01]   RAM peak       : 3426.3867 MB
+[03:20:01]   Best model     : xgboost  RMSE=0.0754  R2=0.9709
+[03:20:01] 
+[03:20:01] ============================================================
+[03:20:01]   SAVING BEST MODEL
+[03:20:01] ============================================================
+[03:20:01] Saved model : /home/ubuntu/DE2-project/src/scalability/best_model_3node.pkl
+[03:20:01] Loaded existing results file — appending node=3 data
+[03:20:01] Saved results : /home/ubuntu/DE2-project/src/scalability/scalability_results.json
+[03:20:01] 
+[03:20:01] ============================================================
+[03:20:01]   FULL SCALABILITY COMPARISON (all 3 configs complete)
+[03:20:01] ============================================================
+[03:20:01]   Nodes     CPUs    Avg Time (s)    Std         CPU%    RAM MB  Best Model           RMSE        R2
+[03:20:01]   --------  ------  --------------  --------  ------  --------  ---------------  --------  --------
+[03:20:01]   1         2       1470.13         30.3455   79.5033  3253.6567  lightgbm           0.0664    0.9775
+[03:20:01]   2         4       914.8233        42.4382   65.2533   3392.07  lightgbm           0.0717    0.9737
+[03:20:01]   3         6       701.7633        12.2357   53.2633  3426.3867  xgboost            0.0754    0.9709
+[03:20:01] 
+[03:20:01] ============================================================
+[03:20:01]   DONE
+[03:20:01] ============================================================
+[03:20:01] Output directory : /home/ubuntu/DE2-project/src/scalability
+[03:20:01]   best_model_3node.pkl
+[03:20:01]   scalability_results.json  (node=3 added)
+[03:20:01]   scalability_log.txt
