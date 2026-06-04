@@ -3,6 +3,10 @@ import pandas as pd
 import time
 import os
 import re
+from dotenv import load_dotenv
+
+# Load environment variables from a .env file if it exists
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), '.env'))
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
