@@ -6,13 +6,16 @@ import re
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# We are hardcoding the token here for grading purposes
-# Normally we'd use a .env file.
-TOKEN = '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'
+# Read the GitHub token from environment variable
+# Consider setting GITHUB_TOKEN in your environment or using a .env file
+TOKEN = os.getenv('GITHUB_TOKEN')
 HEADERS = {
-    'Authorization': f'token {TOKEN}',
     'Accept': 'application/vnd.github.v3+json'
 }
+if TOKEN:
+    HEADERS['Authorization'] = f'token {TOKEN}'
+else:
+    print("WARNING: GITHUB_TOKEN environment variable not set. You may experience severe rate limiting.")
 
 """
 QUICK NOTE ON HOW WE COUNT THINGS (COMMITS, PRS, CONTRIBUTORS):
