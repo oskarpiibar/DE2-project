@@ -82,6 +82,8 @@ To test the predictor app's inference performance and scalability, read more at 
 
 ### Data Collection and Processing
 
+**Authentication Note:** To collect data yourself using the `src/data/collector.py` script, you should copy `.env.example` to `.env` and fill in your GitHub Personal Access Token to avoid severe API rate limiting.
+
 Data was collected from the GitHub REST API in two phases. First, the top 1,000 public repositories with at least 50 stars were identified. From these, 24 raw features were collected across four categories:
 
 | Category | Collected Features |
